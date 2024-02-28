@@ -5,6 +5,8 @@ interface ApexChartProps {
 }
 
 const ApexChart = ({ chartOptions }: ApexChartProps) => {
+
+  
   return (
     <Chart
       options={chartOptions}
