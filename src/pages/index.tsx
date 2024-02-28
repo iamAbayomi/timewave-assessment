@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { useFetchPrice } from "@/hooks/fetchPrice";
 import { format } from "path";
 import { convertToDateAndMonth, formatTime } from "@/utils/helpers";
+import PriceCard from "@/components/pricecard";
 
 // Importing ApexChart dynamically to avoid "window is not defined" error
 const ApexChart = dynamic(() => import("@/components/reactapexchartjs"), {
@@ -74,25 +75,13 @@ const ChartPage: React.FC = () => {
 
   return (
     <div className="  ">
-      <div className={`mx-auto w-full w-[1200px]`}>
+      <div className={`mx-auto w-full w-[840px]`}>
         <p className="mt-[60px] text-center text-[3.0rem] font-bold">
-          7-day price chart of the <br /> $ATOM-$NTRN pair
+          7-day price chart of the $ATOM-$NTRN pair
         </p>
-        <div>
-          <div className="mt-[30px] p-[20px] w-max mx-auto bg-[white] rounded-[10px]">
-            <div className="flex gap-[10px]">
-              <span>
-                Average Price:{" "}
-                <span id="averagePrice">{(atomData?.average).toFixed(2)}</span>
-              </span>
-              <span>
-                Max Price: <span id="maxPrice">{atomData?.max}</span>
-              </span>
-              <span>
-                Min Price: <span id="minPrice">{atomData?.min}</span>
-              </span>
-            </div>
-          </div>
+        <div className="flex gap-[40px] justify-between">
+          <PriceCard title="Astroport" data={atomData} />
+          <PriceCard title="Neutron" data={ntrnData} />
         </div>
         <div className="mt-[30px] p-[20px] w-max mx-auto bg-[white] rounded-[10px]">
           <div className="">
