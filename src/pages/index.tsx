@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { useFetchPrice } from "@/hooks/fetchPrice";
 import { format } from "path";
 import { convertToDateAndMonth, formatTime } from "@/utils/helpers";
+import PriceCard from "@/components/pricecard";
 
 // Importing ApexChart dynamically to avoid "window is not defined" error
 const ApexChart = dynamic(() => import("@/components/reactapexchartjs"), {
@@ -31,79 +32,79 @@ const ChartPage: React.FC = () => {
       {
         name: "$ATOM Price (NTRN)",
         // data: prices,
-        data: atomData?.values
+        data: atomData?.values,
+        color: "#030F3C"
       },
       {
         name: "$NTRN Price (NTRN)",
-        data: ntrnData?.values
+        data: ntrnData?.values,
+        color: "#2FB584"
       }
     ],
     xaxis: {
       categories: atomData?.times,
       labels: {
         formatter: function (value: number) {
-          console.log(
-            "formatter ",
-            value,
-            formatTime(value),
-            " month ",
-            formatTime(value)
-          );
-
           return formatTime(value);
         },
-        axisBorder: {
-          color: "#00000", // Set the color of the x-axis border
-          height: 2, // Set the height of the x-axis border
-          offsetX: 0 // Set the offset of the x-axis border
+        style: {
+          fontSize: "12px", // Specify the font size of the x-axis labels
+          fontFamily: "Space Grotesk, sans-serif" // Specify the font family of the x-axis labels
         }
       },
-
+      title: {
+        text: "Date"
+      },
       type: "datetime"
     },
     yaxis: {
       title: {
         text: "Price (NTRN)"
+      },
+      labels: {
+        style: {
+          fontSize: "12px", // Specify the font size of the x-axis labels
+          fontFamily: "Space Grotesk, sans-serif" // Specify the font family of the x-axis labels
+        }
       }
     },
-    title: {
-      text: "Astroport $ATOM-$NTRN 7-Day Price Chart",
-      align: "center"
-    }
+    responsive: [
+      {
+        breakpoint: 768, // Adjust the breakpoint as needed
+        options: {
+          chart: {
+            width: '100%', // Set the width of the chart to 100% when the screen width is less than the breakpoint
+            height: '300px' // Set the height of the chart to 300px when the screen width is less than the breakpoint
+          }
+        }
+      }
+    ]
+    // title: {
+    //   text: "Astroport $ATOM-$NTRN 7-Day Price Chart",
+    //   align: "center"
+    // }
   };
 
   return (
     <div className="  ">
-      <div className={`mx-auto w-full w-[1200px]`}>
+      <div className={`mx-auto w-full max-w-[880px] px-[20px] pb-[60px]`}>
         <p className="mt-[60px] text-center text-[3.0rem] font-bold">
-          7-day price chart of the <br /> $ATOM-$NTRN pair
+          7-day price chart of the $ATOM-$NTRN pair
         </p>
-        <div>
-          <div className="mt-[30px] p-[20px] w-max mx-auto bg-[white] rounded-[10px]">
-            <div className="flex gap-[10px]">
-              <span>
-                Average Price:{" "}
-                <span id="averagePrice">{(atomData?.average).toFixed(2)}</span>
-              </span>
-              <span>
-                Max Price: <span id="maxPrice">{atomData?.max}</span>
-              </span>
-              <span>
-                Min Price: <span id="minPrice">{atomData?.min}</span>
-              </span>
-            </div>
-          </div>
+        <div className="mt-[60px] w-full max-w-[880px] flex max-sm:flex-col gap-[20px] sm:gap-[40px] justify-between">
+          <PriceCard color="" title="Astroport" data={atomData} />
+          <PriceCard color="" title="Neutron" data={ntrnData} />
         </div>
-        <div className="mt-[30px] p-[20px] w-max mx-auto bg-[white] rounded-[10px]">
-          <div className="">
+        <div className="mt-[30px] p-[20px] w-full mx-auto bg-[white] rounded-[10px]">
+         
             <ApexChart chartOptions={chartOptions} />
-          </div>
+         
         </div>
 
-        <div className="info">
+        {/* <div className="info">
           <span>X-axis: Date</span>
           <span>Y-axis: Price (NTRN)</span>
-        </div>
+        </div> */}
       </div>
     </div>
   );
