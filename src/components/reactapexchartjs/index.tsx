@@ -1,18 +1,21 @@
-import Chart from 'react-apexcharts';
+import Chart from "react-apexcharts";
 
 interface ApexChartProps {
-    chartOptions: any;
+  chartOptions: any;
 }
 
-const ApexChart = ({chartOptions }: ApexChartProps) => {  
+const ApexChart = ({ chartOptions }: ApexChartProps) => {
+  return (
+    <div>
+      <Chart
+        options={chartOptions}
+        series={chartOptions?.series}
+        type="line"
+        height={350}
+        width={1000}
+      />
+    </div>
+  );
+};
 
-    return (
-        <div>
-            
-         <Chart options={chartOptions} series={chartOptions?.series} type="line" height={350} />
-        </div>
-    )
- }
-
-
- export default ApexChart;
+export default ApexChart;

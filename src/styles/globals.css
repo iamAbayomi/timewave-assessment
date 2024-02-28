@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.chart-container{
+    margin: 20vh auto 0px;
+}

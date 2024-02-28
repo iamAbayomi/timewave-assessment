@@ -19,6 +19,7 @@ const ChartPage: React.FC = () => {
     chart: {
       type: "line",
       height: 350,
+
       toolbar: {
         show: false
       }
@@ -49,17 +50,18 @@ const ChartPage: React.FC = () => {
   };
 
   return (
-    <div>
-      {typeof window !== "undefined" && (
+    <div className="mx-auto w-max">
+      <div className="chart-container ">
         <ApexChart chartOptions={chartOptions} />
-      )}
+      </div>
+
       <div className="info">
         <span>X-axis: Date</span>
         <span>Y-axis: Price (NTRN)</span>
       </div>
       <div className="info">
         <span>
-          Average Price: <span id="averagePrice">{atomData?.average}</span>
+          Average Price: <span id="averagePrice">{(atomData?.average).toFixed(2)}</span>
         </span>
         <span>
           Max Price: <span id="maxPrice">{atomData?.max}</span>
