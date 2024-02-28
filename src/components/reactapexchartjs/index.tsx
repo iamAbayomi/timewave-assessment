@@ -11,8 +11,8 @@ const ApexChart = ({ chartOptions }: ApexChartProps) => {
         options={chartOptions}
         series={chartOptions?.series}
         type="line"
-        height={350}
-        width={1000}
+        height={550}
+        width={800}
       />
     </div>
   );

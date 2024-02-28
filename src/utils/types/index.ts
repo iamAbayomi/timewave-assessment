@@ -1,5 +1,5 @@
 interface IGraphResults{
-    times: number[];
+    times: Date[];
     values: number[];
     average: number;
     max: number;
@@ -7,6 +7,6 @@ interface IGraphResults{
 }
 
 interface IGraph{
-    time: number;
+    time: Date;
     value: number;
 }
