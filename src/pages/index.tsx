@@ -17,7 +17,6 @@ interface PriceData {
 
 const ChartPage: React.FC = () => {
   const { atomData, ntrnData, isLoading } = useFetchPrice();
-  console.log("testDate ", new Date(1708778339));
 
   const chartOptions = {
     chart: {
@@ -30,13 +29,13 @@ const ChartPage: React.FC = () => {
     },
     series: [
       {
-        name: "$ATOM Price (NTRN)",
+        name: "$ATOM",
         // data: prices,
         data: atomData?.values,
         color: "#030F3C"
       },
       {
-        name: "$NTRN Price (NTRN)",
+        name: "$NTRN",
         data: ntrnData?.values,
         color: "#2FB584"
       }
@@ -73,16 +72,12 @@ const ChartPage: React.FC = () => {
         breakpoint: 768, // Adjust the breakpoint as needed
         options: {
           chart: {
-            width: '100%', // Set the width of the chart to 100% when the screen width is less than the breakpoint
-            height: '300px' // Set the height of the chart to 300px when the screen width is less than the breakpoint
+            width: "100%", // Set the width of the chart to 100% when the screen width is less than the breakpoint
+            height: "300px" // Set the height of the chart to 300px when the screen width is less than the breakpoint
           }
         }
       }
     ]
-    // title: {
-    //   text: "Astroport $ATOM-$NTRN 7-Day Price Chart",
-    //   align: "center"
-    // }
   };
 
   return (
@@ -96,15 +91,8 @@ const ChartPage: React.FC = () => {
           <PriceCard color="" title="Neutron" data={ntrnData} />
         </div>
         <div className="mt-[30px] p-[20px] w-full mx-auto bg-[white] rounded-[10px]">
-         
-            <ApexChart chartOptions={chartOptions} />
-         
+          <ApexChart chartOptions={chartOptions} />
         </div>
-
-        {/* <div className="info">
-          <span>X-axis: Date</span>
-          <span>Y-axis: Price (NTRN)</span>
-        </div> */}
       </div>
     </div>
   );
