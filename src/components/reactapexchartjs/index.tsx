@@ -6,15 +6,13 @@ interface ApexChartProps {
 
 const ApexChart = ({ chartOptions }: ApexChartProps) => {
   return (
-    <div>
-      <Chart
-        options={chartOptions}
-        series={chartOptions?.series}
-        type="line"
-        height={550}
-        width={800}
-      />
-    </div>
+    <Chart
+      options={chartOptions}
+      series={chartOptions?.series}
+      type="line"
+      height={450}
+      width={800}
+    />
   );
 };
 

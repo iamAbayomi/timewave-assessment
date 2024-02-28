@@ -1,13 +1,16 @@
 interface props {
   title: string;
+  color: string;
   data: IGraphResults;
 }
 
-const PriceCard = ({ title, data }: props) => {
+const PriceCard = ({ title, color, data }: props) => {
   return (
-    <div className="mt-[30px] p-[20px] w-full mx-auto bg-[white] rounded-[10px]">
+    <div className=" p-[20px] w-full mx-auto bg-[white] rounded-[10px]">
       <div className="flex justify-between">
-        <p className="font-bold text-2xl">{title}</p>
+        <p className="font-bold text-2xl" style={{ color }}>
+          {title}
+        </p>
         <div className="flex flex-col gap-[10px]">
           <span className="font-extralight">
             Average Price:{" "}
